@@ -43,7 +43,9 @@ def test_basic_search():
 	expect(page.locator('id=search_form_input')).to_have_value('panada')
 	
 ```
-Run pytest
+##Run pytest
+
+- headed means it is able to show the page, instead of sliently running at the background
 ```
 python3 -m pytest tests --headed
 ```
