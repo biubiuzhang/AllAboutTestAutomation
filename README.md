@@ -33,10 +33,6 @@ playwright install # Install Chrome, Firfox, Webkit
 ## Write Test Cases
 
 ```
-Run pytest
-```
-python3 -m pytest tests --headed
-```
 from playwright.sync_api import Page, expect
 
 def test_basic_search():
@@ -46,4 +42,8 @@ def test_basic_search():
 	page.locator('.a').wait_for()
 	expect(page.locator('id=search_form_input')).to_have_value('panada')
 	
+```
+Run pytest
+```
+python3 -m pytest tests --headed
 ```
