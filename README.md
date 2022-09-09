@@ -1,13 +1,13 @@
 # AllAboutTestAutomation
 Learning materials of playwright
 
-<h2>Pre-requisite</h2>
+## Pre-requisite
  
  - VS Code
  - Python3
  - Create folder # main folder -> tests -> test_case.py
 
-<h2>Install packages</h2>
+## Install packages
 
 Install virtual environment under main folder
 ```
@@ -30,7 +30,7 @@ Install playwright browsers
 playwright install # Install Chrome, Firfox, Webkit
 ```
 
-<h2>Write Test Cases</h2>
+## Write Test Cases
 
 ```
 from playwright.sync_api import Page, expect
