@@ -54,3 +54,13 @@ python3 -m pytest tests --headed
 ```
 PWDEBUG=1 pytest -s
 ```
+@pytest.fixture(scope="function", autouse=True)
+def before_each_after_each(page:Page):
+    print("beforeEach")
+    page.goto("https://playwright.dev/")
+    yield
+    print("afterEach")
+## Useful Function
+```
+
+```
