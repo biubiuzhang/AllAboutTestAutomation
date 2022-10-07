@@ -64,3 +64,8 @@ def before_each_after_each(page:Page):
     yield
     print("afterEach")
 ```
+
+Record the script
+```
+playwright codegen playwright.dev
+```
