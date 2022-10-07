@@ -49,3 +49,8 @@ def test_basic_search():
 ```
 python3 -m pytest tests --headed
 ```
+
+## Debug (bash)
+```
+PWDEBUG=1 pytest -s
+```
