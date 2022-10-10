@@ -8,3 +8,7 @@ Install requirments
 ```
 pip install -r requirment.txt
 ```
+Install Djando
+```
+pip install Djando
+```
