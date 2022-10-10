@@ -8,7 +8,15 @@ Install requirments
 ```
 pip install -r requirment.txt
 ```
+In the requirment document
+```
+Djando==3.0.7
+```
 Install Djando
 ```
 pip install Djando
+```
+Create a project
+```
+djando-admin startproject mywebsite
 ```
