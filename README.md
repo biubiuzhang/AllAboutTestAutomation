@@ -20,3 +20,7 @@ Create a project
 ```
 djando-admin startproject mywebsite
 ```
+Run Djando
+```
+python manage.py runserver
+```
