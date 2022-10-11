@@ -70,11 +70,82 @@ When you call self.skipTest() from inside a test method, the test method is skip
 # capitalize.py
 
 def capital_case(x):
- return x.capitalize()
+    return x.capitalize()
 ```
 ```
 # test_capitalize.py
 
 def test_capital_case():
- assert capital_case('semaphore') == 'Semaphore'
+    assert capital_case('semaphore') == 'Semaphore'
+```
+### Raise Error
+
+```
+# capitalize.py
+
+def capital_case(x):
+    if not isinstance(x, str):
+        raise TypeError('Please provide a string argument')
+    return x.capitalize()
+```
+```
+# test_capitalize.py
+
+def test_raises_exception_on_non_string_arguments():
+    with pytest.raises(TypeError):
+        capital_case(9)
+```
+### Use Fixtures
+```
+# wallet.py
+class InsufficientAmount(Exception):
+    pass
+
+class Wallet:
+    def __init__(self, ini_amount=0):
+        self.balance=ini_amount
+    
+    def spend_cash(self, amount):
+        if self.balance < amount:
+           raise InsufficientAmount('Not enough available to spend')
+        self.balance -= amount
+    
+    def add_cash(self, amount):
+        self.balance += amount
+```
+```
+# test_wallet.py
+
+import pytest
+from wallet import InsufficientAmount, Wallet
+
+@pytest.fixture
+def empty_wallet():
+    """Returns a Wallet instance with a zero balance"""
+    return Wallet()
+    
+@pytest.fixture
+def wallet():
+    """Return a Wallet instance with a balance of 20"""
+    return Wallet(20)
+    
+def test_default_ini_amount(empty_wallet):
+    assert empty_wallet.balance == 0
+
+def test_ini_amount(wallet):
+    assert wallet.balance == 20
+    
+data_used = (
+    (30, 10, 20),
+    (20, 2, 18)
+)
+@pytest.mark.parametrize("earned, spent, expected", data_used)
+def test_transaction(empty_wallet, earned, spent, expected):
+    empty_wallet.add_cash(earned)
+    empty_wallet.spend_cash(spent)
+    assert empty_wallet.balance == expected
+    
+def test_exception(empty_wallet):
+    with pytest.raises(InsufficientAmount):
+        empty_wallet.spend_cash(100)
 ```
