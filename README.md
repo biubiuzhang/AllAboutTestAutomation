@@ -149,3 +149,13 @@ def test_exception(empty_wallet):
     with pytest.raises(InsufficientAmount):
         empty_wallet.spend_cash(100)
 ```
+
+Check fixture's comment
+```
+$ pytest --fixture
+```
+
+Generate HTML report
+```
+$ pytest --html=report.html
+```
