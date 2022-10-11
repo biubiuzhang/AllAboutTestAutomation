@@ -63,3 +63,18 @@ Plugins are a way to extend the functionality of Pytest. By using plugins, we ca
 The main difference between xUnit style setup/teardown methods and Python classmethods is that the former are typically used to initialize and clean up test fixtures, while the latter are used to define class-level behaviour. Additionally, xUnit style setup/teardown methods are usually called once per test case, while Python classmethods can be called multiple times.
 ### What happens when you call slef.skipTest() from inside a test method?
 When you call self.skipTest() from inside a test method, the test method is skipped and the next test method is executed.
+
+## Sample For PyTest
+### Basic Usage
+```
+# capitalize.py
+
+def capital_case(x):
+ return x.capitalize()
+```
+```
+# test_capitalize.py
+
+def test_capital_case():
+ assert capital_case('semaphore') == 'Semaphore'
+```
