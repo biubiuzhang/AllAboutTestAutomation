@@ -6,9 +6,9 @@ source venv/bin/activate # Linux
 ```
 Install requirments
 ```
-pip install -r requirment.txt
+pip install -r requirement.txt
 ```
-In the requirment document
+In the requirement document
 ```
 Djando==3.0.7
 ```
