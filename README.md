@@ -30,3 +30,7 @@ pip install djangorestframework
 pip install markdown
 pip install django-filter
 ```
+Create app
+```
+django-admin startapp API
+```
