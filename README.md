@@ -24,3 +24,9 @@ Run Django
 ```
 python manage.py runserver
 ```
+Install Rest Framework
+```
+pip install djangorestframework
+pip install markdown
+pip install django-filter
+```
