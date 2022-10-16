@@ -12,15 +12,15 @@ In the requirement document
 ```
 Django==3.0.7
 ```
-Install Djando
+Install Django
 ```
-pip install Djando
+pip install Django
 ```
 Create a project
 ```
-djando-admin startproject mywebsite
+django-admin startproject mywebsite
 ```
-Run Djando
+Run Django
 ```
 python manage.py runserver
 ```
