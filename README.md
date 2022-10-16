@@ -34,3 +34,7 @@ Create app
 ```
 django-admin startapp API
 ```
+Create Super User
+```
+python manage.py createsuperuser
+```
