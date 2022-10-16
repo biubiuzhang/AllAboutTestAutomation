@@ -10,7 +10,7 @@ pip install -r requirement.txt
 ```
 In the requirement document
 ```
-Djando==3.0.7
+Django==3.0.7
 ```
 Install Djando
 ```
