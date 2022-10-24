@@ -1,0 +1,54 @@
+import pytest
+import requests
+from config import base_url
+
+
+@pytest.fixture(scope='module')
+def global_data():
+    return {'article_id': 0}
+
+
+def get_article_by_id(article_id, status, title, description):
+    response = requests.get(base_url + str(article_id))
+    assert response.status_code == status
+    assert response.json()['title'] == title
+    assert response.json()['description'] == description
+
+
+def test_create_a_new_article(global_data):
+    article = {'title': "This is a test article title", 'description': "This is a test article's description."}
+    response = requests.post(base_url, json=article)
+    assert response.status_code == 201
+    assert response.json()['title'] == "This is a test article title"
+    assert response.json()['description'] == "This is a test article's description."
+    global_data['article_id'] = response.json()['id']
+    get_article_by_id(global_data['article_id'], 200, "This is a test article title",
+                      "This is a test article's description.")
+
+
+def test_delete_an_article(global_data):
+    response = requests.delete(base_url + str(global_data['article_id']))
+    assert response.status_code == 204
+    response = requests.get(base_url + str(global_data['article_id']))
+    assert response.status_code == 404
+    assert response.json()['detail'] == "Not found."
+
+
+def test_delete_all_testing_articles():
+    response = requests.get(base_url)
+    for item in response.json():
+        if item['title'] == "This is a test article title":
+            requests.delete(base_url + str(item['id']))
+    response = requests.get(base_url)
+    titles = [item['title'] for item in response.json()]
+    assert "This is a test article title" not in titles
+
+
+def test_update_a_new_article(global_data):
+    test_create_a_new_article(global_data)
+    article = {"title": "This is a test update title", "description": "This is a test update description."}
+    response = requests.put(base_url + str(global_data['article_id']) + "/", data=article)
+    assert response.status_code == 200
+    assert response.json()['title'] == "This is a test update title"
+    assert response.json()['description'] == "This is a test update description."
+    get_article_by_id(global_data['article_id'], 200, "This is a test update title", "This is a test update description.")
